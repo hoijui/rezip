@@ -1,4 +1,5 @@
 # ReZip
+
 For more efficient Git packing of ZIP based files.
 
 ## Motivation
@@ -29,6 +30,19 @@ but without compression.
 - (optional) slower checkout process
 
 ## How it works
+
+##### In short
+
+When adding/committing a ZIP based file,
+ReZip unpacks it and repacks it without compression,
+before adding it to the index/commit.
+In an uncompressed ZIP file,
+the archived files appear _as-is_ in its content
+(together with some binary meta-info before each file).
+If those archived files are plain-text files,
+this method will play nicely with git.
+
+##### In more detail
 
 On every `git add` operation, the files assigned to the ZIP based file type in
 _.gitattributes_ are piped through this filter to remove their compression.
